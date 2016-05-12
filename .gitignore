@@ -1,37 +1,6 @@
-# Java
-*.class
-*.jar
-*.war
-*.ear
+/.settings
 
-# Eclipse
-.project
-.classpath
-.settings
+/.classpath
+/.project
 
-# Idea
-.idea
-*.iml
-*.iws
-*.ipr
-
-# OS
-Thumbs.db
-.DS_Store
-
-# Gradle
-.gradle
-!gradle-wrapper.jar
-
-# Maven
-target
-
-# Build
-out
-build
-bin
-
-# Other
-*.log
-*.swp
-*.bak
+/target
