@@ -1,4 +1,4 @@
-package com.nichiwa.matsumura;
+package jp.co.nichiwasystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

@@ -1,4 +1,4 @@
-package com.nichiwa.matsumura;
+package jp.co.nichiwasystem;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
