@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Days Info View</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p>Daysデータ表示:</p>
+
+    <p th:text="${results}" />
+
+<hr />
+
+<p>Personデータ追加:</p>
+
+<form method="POST" action="/post">
+  日付: <input type="text" name="date" /><br />
+  何の日: <input type="text" name="name" /><br />
+  備考: <input type="text" name="description" /><br />
+  <input type="submit" value="登録" />
+</form>
+
+</body>
+</html>

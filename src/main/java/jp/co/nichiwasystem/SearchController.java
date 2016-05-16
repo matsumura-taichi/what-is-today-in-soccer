@@ -36,7 +36,7 @@ public class SearchController
         return "search";
     }
 
- // input formを表示
+    // input formを表示
     @RequestMapping("/input")
     public String input() {
         return "input"; // input form
@@ -58,7 +58,41 @@ public class SearchController
       return filter;
     }
 
+    /*
+     * 日付
+     *
+     */
+
     @Autowired
+    DaysRepository repository;
+
+    @RequestMapping("/days-view")
+    public String personView(Model model) {
+      Iterable<Days> list = repository.findAll();
+      model.addAttribute("results", list);
+      return "days-view";
+    }
+
+    @RequestMapping(value="/post", method=RequestMethod.POST)
+    public String daysSearch(Model model,
+      @RequestParam("date") String date,
+      @RequestParam("name") String name,
+      @RequestParam("description") String description) {
+
+    	Days days = new Days(date, name, description);
+        repository.saveAndFlush(days);
+        Iterable<Days> list = repository.findAll();
+        model.addAttribute("results", list);
+        return "days-view";
+    }
+
+
+    /*
+     * 人物
+     *
+     */
+
+    /*    @Autowired
     PersonRepository repository;
 
     @RequestMapping("/person-view")
@@ -106,5 +140,6 @@ public class SearchController
       model.addAttribute("results", list);
       return "person-view";
     }
+    */
 
 }
