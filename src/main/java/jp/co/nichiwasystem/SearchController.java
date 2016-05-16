@@ -67,7 +67,7 @@ public class SearchController
     DaysRepository repository;
 
     @RequestMapping("/days-view")
-    public String personView(Model model) {
+    public String daysView(Model model) {
       Iterable<Days> list = repository.findAll();
       model.addAttribute("results", list);
       return "days-view";
@@ -75,16 +75,19 @@ public class SearchController
 
     @RequestMapping(value="/post", method=RequestMethod.POST)
     public String daysSearch(Model model,
-      @RequestParam("date") String date,
+      @RequestParam("month") Integer month,
+      @RequestParam("day") Integer day,
       @RequestParam("name") String name,
       @RequestParam("description") String description) {
 
-    	Days days = new Days(date, name, description);
+    	Days days = new Days(month, day, name, description);
         repository.saveAndFlush(days);
         Iterable<Days> list = repository.findAll();
         model.addAttribute("results", list);
         return "days-view";
     }
+
+
 
 
     /*

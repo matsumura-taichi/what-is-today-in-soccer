@@ -9,7 +9,8 @@ public class Days {
     @Id
     @GeneratedValue
     protected Integer id;
-    protected String date;
+    protected Integer month;
+    protected Integer day;
     protected String name;
     protected String description;
 
@@ -17,16 +18,17 @@ public class Days {
       super();
     }
 
-    public Days(String date, String name, String description) {
+    public Days(Integer month, Integer day,  String name, String description) {
 
       super();
-      this.date = date;
+      this.month = month;
+      this.day = day;
       this.name = name;
       this.description = description;
     }
 
     // for debug
     public String toString() {
-      return "[date:" + date + ", name:" + name + ", description:" + description + "]";
+      return "[month:" + month + "day:" + day + ", name:" + name + ", description:" + description + "]";
     }
 }
