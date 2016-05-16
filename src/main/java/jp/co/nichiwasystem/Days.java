@@ -29,6 +29,6 @@ public class Days {
 
     // for debug
     public String toString() {
-      return "[month:" + month + "day:" + day + ", name:" + name + ", description:" + description + "]";
+      return "[" + month + "月" + day + "日，" + name + "，" + description + "]";
     }
 }
