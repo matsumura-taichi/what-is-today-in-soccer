@@ -27,7 +27,7 @@ public class SearchController
     // an entry point
     public static void main( String[] args )
     {
-        SpringApplication.run(SearchController.class, args);
+        SpringApplication.run(SearchControllerTest.class, args);
     }
 
     @RequestMapping("/search")
