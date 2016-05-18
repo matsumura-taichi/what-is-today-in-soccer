@@ -92,13 +92,14 @@ public class SearchController
 
     	if (DateCheck(month, day) == false) {
     		//バリデートエラーメッセージを表示
+    		model.addAttribute("validate_error", "存在しない日付です");
 
+    	} else {
+    		Days days = new Days(month, day, name, description);
+    		repository.saveAndFlush(days);
+    		Iterable<Days> list = repository.findAll();
+    		model.addAttribute("results", list);
     	}
-
-    	Days days = new Days(month, day, name, description);
-        repository.saveAndFlush(days);
-        Iterable<Days> list = repository.findAll();
-        model.addAttribute("results", list);
         return "days-view";
     }
 
