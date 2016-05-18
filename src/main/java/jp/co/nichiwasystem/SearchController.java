@@ -1,5 +1,7 @@
 package jp.co.nichiwasystem;
 
+import java.text.DateFormat;
+
 import javax.servlet.Filter;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,14 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 @EnableAutoConfiguration
 public class SearchController
 {
+//	private final Integer month;
+//	private final Integer day;
+//
+//	public void MonthAndDate(Integer month, Integer day) {
+//		this.month = month;
+//		this.day = day;
+//	}
+
     @RequestMapping("/")
     @ResponseBody
     public String home() {
@@ -27,7 +37,7 @@ public class SearchController
     // an entry point
     public static void main( String[] args )
     {
-        SpringApplication.run(SearchControllerTest.class, args);
+        SpringApplication.run(SearchController.class, args);
     }
 
     @RequestMapping("/search")
@@ -80,6 +90,11 @@ public class SearchController
       @RequestParam("name") String name,
       @RequestParam("description") String description) {
 
+    	if (DateCheck(month, day) == false) {
+    		//バリデートエラーメッセージを表示
+
+    	}
+
     	Days days = new Days(month, day, name, description);
         repository.saveAndFlush(days);
         Iterable<Days> list = repository.findAll();
@@ -87,7 +102,17 @@ public class SearchController
         return "days-view";
     }
 
-
+    //日付妥当性チェック
+    public static Boolean DateCheck(Integer month, Integer day) {
+	    DateFormat format = DateFormat.getDateInstance();
+	    format.setLenient(false);
+	    try {
+	        format.parse("2016" + "/" + String.format("%1$02d", month) + "/" + String.format("%1$02d", day));
+	        return true;
+	    } catch (Exception e) {
+	        return false;
+	    }
+	}
 
 
     /*
