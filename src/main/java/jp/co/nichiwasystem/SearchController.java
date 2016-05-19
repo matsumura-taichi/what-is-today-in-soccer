@@ -67,7 +67,7 @@ public class SearchController
      */
 
     @Autowired
-    DaysRepository repository;
+    static DaysRepository repository;
 
     @RequestMapping("/days-view")
     public String daysView(Model model) {
@@ -108,6 +108,23 @@ public class SearchController
         return "days-view";
     }
 
+    @RequestMapping(value="/find", method=RequestMethod.POST)
+    public String find(Model model,  @RequestParam("find_month") Integer find_month , @RequestParam("find_day") Integer find_day) {
+
+    	Object count = FindDataCount(find_month, find_day);
+        String countStr = count.toString();
+        Integer countInt = new Integer(countStr).intValue();
+
+    	if (countInt < 1) {
+    		//エラーメッセージを表示
+    		model.addAttribute("count_error", "登録データが見つかりません");
+    	} else {
+    		model.addAttribute("results", repository.findByMonth(find_month));
+    	}
+
+      return "days-view";
+    }
+
     //日付妥当性チェック
     public static Boolean DateCheck(Integer month, Integer day) {
 	    DateFormat format = DateFormat.getDateInstance();
@@ -127,6 +144,14 @@ public class SearchController
     	} else {
     		return true;
     	}
+	}
+
+	public static Object FindDataCount(int month, int day) {
+		return repository.findByMonth(month).size();
+	}
+
+	public static Object FindData(int month, int day) {
+		return repository.findByMonth(month);
 	}
 
     /*
