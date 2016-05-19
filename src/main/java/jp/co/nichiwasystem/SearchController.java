@@ -20,13 +20,6 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 @EnableAutoConfiguration
 public class SearchController
 {
-//	private final Integer month;
-//	private final Integer day;
-//
-//	public void MonthAndDate(Integer month, Integer day) {
-//		this.month = month;
-//		this.day = day;
-//	}
 
     @RequestMapping("/")
     @ResponseBody
@@ -90,16 +83,28 @@ public class SearchController
       @RequestParam("name") String name,
       @RequestParam("description") String description) {
 
-    	if (DateCheck(month, day) == false) {
-    		//バリデートエラーメッセージを表示
-    		model.addAttribute("validate_error", "存在しない日付です");
+    	Boolean errFlg = false;
 
-    	} else {
+    	if (DateCheck(month, day) == false) {
+    		errFlg = true;
+    		//エラーメッセージを表示
+    		model.addAttribute("date_error", "存在しない日付です");
+    	}
+
+    	if (NameCheck(name) == false) {
+    		errFlg = true;
+    		//エラーメッセージを表示
+    		model.addAttribute("name_error", "何の日が未入力です");
+    	}
+
+    	if (errFlg == false) {
+    		//入力内容をDBに登録
     		Days days = new Days(month, day, name, description);
     		repository.saveAndFlush(days);
-    		Iterable<Days> list = repository.findAll();
-    		model.addAttribute("results", list);
     	}
+
+		Iterable<Days> list = repository.findAll();
+		model.addAttribute("results", list);
         return "days-view";
     }
 
@@ -115,6 +120,14 @@ public class SearchController
 	    }
 	}
 
+    //何の日かの名称チェック
+    public static Boolean NameCheck(String name) {
+    	if (name == null || name.trim().length() == 0) {
+    		return false;
+    	} else {
+    		return true;
+    	}
+	}
 
     /*
      * 人物
