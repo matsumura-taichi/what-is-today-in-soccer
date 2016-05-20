@@ -67,7 +67,7 @@ public class SearchController
      */
 
     @Autowired
-    static DaysRepository repository;
+    DaysRepository repository;
 
     @RequestMapping("/days-view")
     public String daysView(Model model) {
@@ -119,7 +119,7 @@ public class SearchController
     		//エラーメッセージを表示
     		model.addAttribute("count_error", "登録データが見つかりません");
     	} else {
-    		model.addAttribute("results", repository.findByMonth(find_month));
+    		model.addAttribute("results", FindData(find_month, find_day));
     	}
 
       return "days-view";
@@ -146,67 +146,14 @@ public class SearchController
     	}
 	}
 
-	public static Object FindDataCount(int month, int day) {
-		return repository.findByMonth(month).size();
+    // 検索対象データ件数取得
+	public Object FindDataCount(Integer month, Integer day) {
+		return repository.findByMonthAndDay(month, day).size();
 	}
 
-	public static Object FindData(int month, int day) {
-		return repository.findByMonth(month);
+	// 検索対象データ取得
+	public Object FindData(Integer month, Integer day) {
+		return repository.findByMonthAndDay(month, day);
 	}
-
-    /*
-     * 人物
-     *
-     */
-
-    /*    @Autowired
-    PersonRepository repository;
-
-    @RequestMapping("/person-view")
-    public String personView(Model model) {
-      Iterable<Person> list = repository.findAll();
-      model.addAttribute("results", list);
-      return "person-view";
-    }
-
-    @RequestMapping(value="/post", method=RequestMethod.POST)
-    public String personSearch(Model model,
-      @RequestParam("name") String name,
-      @RequestParam("tel") String tel,
-      @RequestParam("mail") String mail,
-      @RequestParam("description") String description) {
-
-        Person person = new Person(name, tel, mail, description);
-        repository.saveAndFlush(person);
-        Iterable<Person> list = repository.findAll();
-        model.addAttribute("results", list);
-        return "person-view";
-    }
-
-    @RequestMapping(value="/find", method=RequestMethod.POST)
-    public String find(Model model,  @RequestParam("category") String category , @RequestParam("str") String str) {
-
-      Iterable<Person> list = null;
-
-      if (category.equals("name")) {
-        list = repository.findByName(str);
-      }
-      else if (category.equals("tel")) {
-        list = repository.findByTel(str);
-      }
-      else if (category.equals("mail")) {
-        list = repository.findByMail(str);
-      }
-      else if (category.equals("description")) {
-        list = repository.findByDescription(str);
-      }
-      else {
-        list = null;
-      }
-
-      model.addAttribute("results", list);
-      return "person-view";
-    }
-    */
 
 }

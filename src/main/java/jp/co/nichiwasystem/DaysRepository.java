@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DaysRepository extends JpaRepository<Days, Integer> {
-	public List<Person> findByMonth(Integer month);
+	public List<Days> findByMonthAndDay(Integer month, Integer day);
 }
