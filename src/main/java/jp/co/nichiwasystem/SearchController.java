@@ -1,6 +1,7 @@
 package jp.co.nichiwasystem;
 
 import java.text.DateFormat;
+import java.util.Calendar;
 
 import javax.servlet.Filter;
 
@@ -111,7 +112,7 @@ public class SearchController
     @RequestMapping(value="/find", method=RequestMethod.POST)
     public String find(Model model,  @RequestParam("find_month") Integer find_month , @RequestParam("find_day") Integer find_day) {
 
-    	Object count = FindDataCount(find_month, find_day);
+    	Object count = findDataCount(find_month, find_day);
         String countStr = count.toString();
         Integer countInt = new Integer(countStr).intValue();
 
@@ -119,7 +120,7 @@ public class SearchController
     		//エラーメッセージを表示
     		model.addAttribute("count_error", "登録データが見つかりません");
     	} else {
-    		model.addAttribute("results", FindData(find_month, find_day));
+    		model.addAttribute("results", findData(find_month, find_day));
     	}
 
       return "days-view";
@@ -147,13 +148,24 @@ public class SearchController
 	}
 
     // 検索対象データ件数取得
-	public Object FindDataCount(Integer month, Integer day) {
+	public Object findDataCount(Integer month, Integer day) {
 		return repository.findByMonthAndDay(month, day).size();
 	}
 
 	// 検索対象データ取得
-	public Object FindData(Integer month, Integer day) {
+	public Object findData(Integer month, Integer day) {
 		return repository.findByMonthAndDay(month, day);
 	}
 
+	// 本日の月を取得
+	public Object getTodayMonth() {
+		Calendar now = Calendar.getInstance();
+		return now.get(Calendar.MONTH);
+	}
+
+	// 本日の日を取得
+	public Object getTodayDay() {
+		Calendar now = Calendar.getInstance();
+		return now.get(Calendar.DAY_OF_MONTH);
+	}
 }

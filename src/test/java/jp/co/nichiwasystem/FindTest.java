@@ -7,12 +7,12 @@ import org.junit.Test;
 public class FindTest {
 
 	@Test
-	public void FindData() {
-		assertEquals(1, new SearchController().FindDataCount(1, 1));
+	public void findData() {
+		assertEquals(1, new SearchController().findDataCount(1, 1));
     }
 
 	@Test
-	public void NotFindData() {
-		assertEquals(0, new SearchController().FindDataCount(2, 3));
+	public void notFindData() {
+		assertEquals(0, new SearchController().findDataCount(2, 3));
     }
 }
