@@ -89,13 +89,13 @@ public class SearchController
 
     	Boolean errFlg = false;
 
-    	if (DateCheck(month, day) == false) {
+    	if (dateCheck(month, day) == false) {
     		errFlg = true;
     		//エラーメッセージを表示
     		model.addAttribute("date_error", "存在しない日付です");
     	}
 
-    	if (NameCheck(name) == false) {
+    	if (nameCheck(name) == false) {
     		errFlg = true;
     		//エラーメッセージを表示
     		model.addAttribute("name_error", "何の日が未入力です");
@@ -135,7 +135,7 @@ public class SearchController
     }
 
     //日付妥当性チェック
-    public static Boolean DateCheck(Integer month, Integer day) {
+    public static Boolean dateCheck(Integer month, Integer day) {
 	    DateFormat format = DateFormat.getDateInstance();
 	    format.setLenient(false);
 	    try {
@@ -147,7 +147,7 @@ public class SearchController
 	}
 
     //何の日かの名称チェック
-    public static Boolean NameCheck(String name) {
+    public static Boolean nameCheck(String name) {
     	if (name == null || name.trim().length() == 0) {
     		return false;
     	} else {
