@@ -22,6 +22,9 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 public class SearchController
 {
 
+    @Autowired
+    DaysRepository repository;
+
     @RequestMapping("/")
     @ResponseBody
     public String home() {
@@ -62,18 +65,18 @@ public class SearchController
       return filter;
     }
 
-    /*
-     * 日付
-     *
-     */
-
-    @Autowired
-    DaysRepository repository;
-
     @RequestMapping("/days-view")
     public String daysView(Model model) {
+      // 登録データ
       Iterable<Days> list = repository.findAll();
       model.addAttribute("results", list);
+
+      // 現在の月
+      model.addAttribute("month", getTodayMonth().toString());
+
+      // 現在の日
+      model.addAttribute("day", getTodayDay().toString());
+
       return "days-view";
     }
 
@@ -123,6 +126,11 @@ public class SearchController
     		model.addAttribute("results", findData(find_month, find_day));
     	}
 
+        // 月
+        model.addAttribute("month", find_month.toString());
+        // 日
+        model.addAttribute("day", find_day.toString());
+
       return "days-view";
     }
 
@@ -160,7 +168,7 @@ public class SearchController
 	// 本日の月を取得
 	public Object getTodayMonth() {
 		Calendar now = Calendar.getInstance();
-		return now.get(Calendar.MONTH);
+		return now.get(Calendar.MONTH) + 1;
 	}
 
 	// 本日の日を取得

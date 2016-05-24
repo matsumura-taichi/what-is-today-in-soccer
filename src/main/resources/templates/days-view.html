@@ -80,52 +80,52 @@
 
 <form method="POST" action="/find">
 	<select name="find_month">
-	<option value="1">1</option>
-	<option value="2">2</option>
-	<option value="3">3</option>
-	<option value="4">4</option>
-	<option value="5">5</option>
-	<option value="6">6</option>
-	<option value="7">7</option>
-	<option value="8">8</option>
-	<option value="9">9</option>
-	<option value="10">10</option>
-	<option value="11">11</option>
-	<option value="12">12</option>
+	<option value="1" th:selected="${month=='1'}">1</option>
+	<option value="2" th:selected="${month=='2'}">2</option>
+	<option value="3" th:selected="${month=='3'}">3</option>
+	<option value="4" th:selected="${month=='4'}">4</option>
+	<option value="5" th:selected="${month=='5'}">5</option>
+	<option value="6" th:selected="${month=='6'}">6</option>
+	<option value="7" th:selected="${month=='7'}">7</option>
+	<option value="8" th:selected="${month=='8'}">8</option>
+	<option value="9" th:selected="${month=='9'}">9</option>
+	<option value="10" th:selected="${month=='10'}">10</option>
+	<option value="11" th:selected="${month=='11'}">11</option>
+	<option value="12" th:selected="${month=='12'}">12</option>
 	</select>
 	月
 	<select name="find_day">
-	<option value="1">1</option>
-	<option value="2">2</option>
-	<option value="3">3</option>
-	<option value="4">4</option>
-	<option value="5">5</option>
-	<option value="6">6</option>
-	<option value="7">7</option>
-	<option value="8">8</option>
-	<option value="9">9</option>
-	<option value="10">10</option>
-	<option value="11">11</option>
-	<option value="12">12</option>
-	<option value="13">13</option>
-	<option value="14">14</option>
-	<option value="15">15</option>
-	<option value="16">16</option>
-	<option value="17">17</option>
-	<option value="18">18</option>
-	<option value="19">19</option>
-	<option value="20">20</option>
-	<option value="21">21</option>
-	<option value="22">22</option>
-	<option value="23">23</option>
-	<option value="24">24</option>
-	<option value="25">25</option>
-	<option value="26">26</option>
-	<option value="27">27</option>
-	<option value="28">28</option>
-	<option value="29">29</option>
-	<option value="30">30</option>
-	<option value="31">31</option>
+	<option value="1" th:selected="${day=='1'}">1</option>
+	<option value="2" th:selected="${day=='2'}">2</option>
+	<option value="3" th:selected="${day=='3'}">3</option>
+	<option value="4" th:selected="${day=='4'}">4</option>
+	<option value="5" th:selected="${day=='5'}">5</option>
+	<option value="6" th:selected="${day=='6'}">6</option>
+	<option value="7" th:selected="${day=='7'}">7</option>
+	<option value="8" th:selected="${day=='8'}">8</option>
+	<option value="9" th:selected="${day=='9'}">9</option>
+	<option value="10" th:selected="${day=='10'}">10</option>
+	<option value="11" th:selected="${day=='11'}">11</option>
+	<option value="12" th:selected="${day=='12'}">12</option>
+	<option value="13" th:selected="${day=='13'}">13</option>
+	<option value="14" th:selected="${day=='14'}">14</option>
+	<option value="15" th:selected="${day=='15'}">15</option>
+	<option value="16" th:selected="${day=='16'}">16</option>
+	<option value="17" th:selected="${day=='17'}">17</option>
+	<option value="18" th:selected="${day=='18'}">18</option>
+	<option value="19" th:selected="${day=='19'}">19</option>
+	<option value="20" th:selected="${day=='20'}">20</option>
+	<option value="21" th:selected="${day=='21'}">21</option>
+	<option value="22" th:selected="${day=='22'}">22</option>
+	<option value="23" th:selected="${day=='23'}">23</option>
+	<option value="24" th:selected="${day=='24'}">24</option>
+	<option value="25" th:selected="${day=='25'}">25</option>
+	<option value="26" th:selected="${day=='26'}">26</option>
+	<option value="27" th:selected="${day=='27'}">27</option>
+	<option value="28" th:selected="${day=='28'}">28</option>
+	<option value="29" th:selected="${day=='29'}">29</option>
+	<option value="30" th:selected="${day=='30'}">30</option>
+	<option value="31" th:selected="${day=='31'}">31</option>
 	</select>
 	日
  <input type="submit" value="検索" />

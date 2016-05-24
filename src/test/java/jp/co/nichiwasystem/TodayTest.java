@@ -13,6 +13,6 @@ public class TodayTest {
 
 	@Test
 	public void todayDay() {
-		assertEquals(20, new SearchController().getTodayDay());
+		assertEquals(24, new SearchController().getTodayDay());
     }
 }

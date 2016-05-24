@@ -1,6 +1,9 @@
 package jp.co.nichiwasystem;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+import java.util.Arrays;
 
 import org.junit.Test;
 
@@ -8,11 +11,10 @@ public class FindTest {
 
 	@Test
 	public void findData() {
-		assertEquals(1, new SearchController().findDataCount(1, 1));
-    }
+		SearchController controller = new SearchController();
+		controller.repository = mock(DaysRepository.class);
+		when(controller.repository.findByMonthAndDay(1, 1)).thenReturn(Arrays.asList(new Days()));
 
-	@Test
-	public void notFindData() {
-		assertEquals(0, new SearchController().findDataCount(2, 3));
+		assertEquals(1, controller.findDataCount(1, 1));
     }
 }
