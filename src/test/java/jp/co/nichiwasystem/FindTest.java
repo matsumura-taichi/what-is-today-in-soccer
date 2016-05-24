@@ -17,4 +17,13 @@ public class FindTest {
 
 		assertEquals(1, controller.findDataCount(1, 1));
     }
+
+	@Test
+	public void notFindData() {
+		SearchController controller = new SearchController();
+		controller.repository = mock(DaysRepository.class);
+		when(controller.repository.findByMonthAndDay(2, 3)).thenReturn(Arrays.asList());
+
+		assertEquals(0, controller.findDataCount(2, 3));
+    }
 }
