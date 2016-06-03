@@ -37,25 +37,6 @@ public class SearchController
         SpringApplication.run(SearchController.class, args);
     }
 
-    @RequestMapping("/search")
-    public String search(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "search";
-    }
-
-    // input formを表示
-    @RequestMapping("/input")
-    public String input() {
-        return "input"; // input form
-    }
-
-    // inputフォームから受け取ってhello.htmlへ
-    @RequestMapping("/send")
-    public String send(Model model, @RequestParam("name") String name) {
-      model.addAttribute("name", name);
-      return "search";    // View file is templates/hello.html
-    }
-
     // 日本語文字化け対策
     @Bean
     public Filter characterEncodingFilter() {
